@@ -9,7 +9,6 @@ const userSchema = mongooes.Schema({
         type: Array,
         default: []
     },
-    isadmin:Boolean,
     order: {
         type: Array,
         default: []

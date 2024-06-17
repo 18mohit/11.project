@@ -3,20 +3,25 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const ownersRouter = require('./routes/ownersRouter');
+const productsRouter = require('./routes/productsRouter');
 const usersRouter = require('./routes/usersRouter');
-const productsRouter = require('./routes/productsRouter')
+const indexRouter = require('./routes/index');
 
-const db = require('./config/mogooes-connection')
+require('dotenv').config();
+
+const db = require('./config/mogooes-connection');
 
 app.use(express.json());
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')))
-app.set('view engine', 'ejs')
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'ejs');
 
-app.use('/owners', ownersRouter)
-app.use('/users', usersRouter)
-app.use('/products', productsRouter)
+app.use('/', indexRouter);
+app.use('/owners', ownersRouter);
+app.use('/users', usersRouter);
+app.use('/products', productsRouter);
 
-
-app.listen(4000);
+app.listen(4000, () => {
+    console.log("Server is running on port 4000");
+});

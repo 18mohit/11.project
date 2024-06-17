@@ -1,10 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser } = require('../controllers/authController');
 
 router.get('/', (req, res) => {
-    res.send("users");
+    res.render('index', { error: null }); // Initialize error as null or any default value
 });
-router.post('/register', registerUser);
 
 module.exports = router;
