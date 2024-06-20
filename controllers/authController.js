@@ -46,8 +46,7 @@ const loginUser = async (req, res) => {
         if(result){
             let token = generateToken(user);
             res.cookie('token', token);
-            res.send('u can log in')
-            // res.redirect('shop');
+            res.redirect('/shop');
         }
         else{
             return res.send('email or password is incorrect');
@@ -55,4 +54,9 @@ const loginUser = async (req, res) => {
     })
 }
 
-module.exports = { registerUser,loginUser };
+const logoutUser = async (req,res) => {
+    res.cookie('token', '');
+    res.redirect('/');
+}
+
+module.exports = { registerUser, loginUser, logoutUser };

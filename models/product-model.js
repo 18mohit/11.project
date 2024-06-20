@@ -3,7 +3,7 @@ const mongooes = require('mongoose')
 
 
 const productSchema = mongooes.Schema({
-    image: String,
+    image: Buffer,
     name: String,
     price: Number,
     discount: {
@@ -15,4 +15,4 @@ const productSchema = mongooes.Schema({
     textcolor: String
 });
 
-module.exports = mongooes.model('user', productSchema);
+module.exports = mongooes.model('product', productSchema);
