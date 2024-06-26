@@ -9,8 +9,6 @@ const registerUser = async (req, res) => {
 
         let user = await userModel.findOne({email: email})
         if(user) return res.status(401).send('you alrady have account please login')
-        // const salt = await bcrypt.genSalt(10);
-        // const hashedPassword = await bcrypt.hash(password, salt);
 
        bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(password, salt, async function(err, hash){
@@ -58,5 +56,5 @@ const logoutUser = async (req,res) => {
     res.cookie('token', '');
     res.redirect('/');
 }
-
+    
 module.exports = { registerUser, loginUser, logoutUser };

@@ -5,10 +5,10 @@ const userSchema = mongooes.Schema({
     fullname: String,
     email: String,
     password: String,
-    cart: {
-        type: Array,
-        default: []
-    },
+    cart: [{
+        type: mongooes.Schema.Types.ObjectId,
+        ref: 'product',
+    }],
     order: {
         type: Array,
         default: []
